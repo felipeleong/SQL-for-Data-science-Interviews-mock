@@ -1,5 +1,6 @@
 ## MOCK 1
-## Success rate = number of post / number of enter
+## Average event per day 
+Success rate = number of post / number of enter
 ````sql
 SELECT 
 	EXTRACT(DOW FROM CREATED_AT) AS DOW,
