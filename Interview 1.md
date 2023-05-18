@@ -1,0 +1,11 @@
+## MOCK 1
+## Success rate = number of post / number of enter
+````sql
+SELECT 
+	EXTRACT(DOW FROM CREATED_AT) AS DOW,
+	ROUND(COUNT(CASE WHEN EVENT_NAME = 'post' THEN 1 ELSE NULL END)*1.00/
+	COUNT(CASE WHEN EVENT_NAME = 'enter' THEN 1 ELSE NULL END),2)*100 AS SUCCES_RATE
+FROM interviews.post_events
+GROUP BY 1
+ORDER BY 2 ASC
+`````
