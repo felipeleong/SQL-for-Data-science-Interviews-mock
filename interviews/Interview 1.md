@@ -9,3 +9,9 @@ FROM interviews.post_events
 GROUP BY 1
 ORDER BY 2 ASC;
 ````
+##Answer: 
+| dow | success_rate |
+|-----|-------------|
+| 3   | 0.00        |
+| 1   | 33.00       |
+| 2   | 50.00       |
