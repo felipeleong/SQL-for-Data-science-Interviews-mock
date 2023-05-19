@@ -4,14 +4,15 @@
 FINDE THE DIFFERENCE AS AN ABSOLUTE VALUE AND ROUND IT TO THE SECOND DECIMAL PLACE
 ORDER THE RESULT BY REQUEST DATE
 This table does not exsits*/
---uber_rides
+````sql
+uber_rides
 request_id int
 request_date datetime
 request_status varchar ('canceled_by_driver','canceled_by_client','success')
 distance_to_travel float
 monetary_cost float
 driver_to_client_distance float
---------------------------
+````
 ````SQL
 SELECT 
 	REQUEST_DATE AS DATE,
