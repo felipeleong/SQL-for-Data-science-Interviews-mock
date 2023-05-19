@@ -10,19 +10,18 @@ WITH CTE AS (
 )
 SELECT DISTINCT SALARY,DEPARTMENT, RANKED
 FROM CTE
-WHERE RANKED <=3
+WHERE RANKED <=3 AND SALARY IS NOT NULL
 ORDER BY 2 ASC , 1 DESC;
 ````
 ## Answer: 
-| salary  | department    | ranked |
-|---------|---------------|--------|
-|         | entertainment | 1      |
-| 300000  | hr            | 1      |
-| 60000   | hr            | 2      |
-| 40000   | hr            | 3      |
-| 1200000 | product       | 1      |
-| 100000  | product       | 2      |
-| 40000   | product       | 3      |
-| 400000  | tech          | 1      |
-| 110000  | tech          | 2      |
-| 80000   | tech          | 3      |
+| salary  | department | ranked |
+|---------|------------|--------|
+| 300000  | hr         | 1      |
+| 60000   | hr         | 2      |
+| 40000   | hr         | 3      |
+| 1200000 | product    | 1      |
+| 100000  | product    | 2      |
+| 40000   | product    | 3      |
+| 400000  | tech       | 1      |
+| 110000  | tech       | 2      |
+| 80000   | tech       | 3      |
