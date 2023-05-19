@@ -9,7 +9,7 @@ use this tables: users and comments*/
 ````SQL
 WITH BASE AS (
 	SELECT 
-		u.id AS userID ,COUNT(*) AS QUANTITY_OF_COMMENTS
+		u.id AS userID ,COUNT(*) AS amount_comments
 	FROM interviews.users u
 	JOIN interviews.comments c ON U.id = c.user_id
 	WHERE created_at BETWEEN '2020-01-01' AND '2020-01-31' 
@@ -17,17 +17,18 @@ WITH BASE AS (
 	GROUP BY 1
 )
 SELECT 
-	COUNT(userID),QUANTITY_OF_COMMENTS
+	COUNT(userID) AS amount_users,amount_comments
 FROM BASE
 GROUP BY 2
-ORDER BY 2 
+ORDER BY 2; 
 ````
 Answer: 
-| count | quantity_of_comments |
-|-------|---------------------|
-| 2     | 1                   |
-| 1     | 2                   |
-| 2     | 3                   |
+| amount_users | amount_comments |
+|--------------|-----------------|
+| 2            | 1               |
+| 1            | 2               |
+| 2            | 3               |
+
 
 
 
