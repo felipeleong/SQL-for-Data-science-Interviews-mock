@@ -17,19 +17,19 @@ WITH BASE AS (
 	GROUP BY 1
 )
 SELECT
-	 ID, QUANTITY_OF_COMMENTS,
+	 QUANTITY_OF_COMMENTS,
 	ROW_NUMBER() OVER(PARTITION BY QUANTITY_OF_COMMENTS ORDER BY QUANTITY_OF_COMMENTS) AS NUM_OF_USERS
 FROM BASE;
 ````
 Answer: 
-| id  | quantity_of_comments | num_of_users |
-|-----|---------------------|--------------|
-| 4   | 1                   | 1            |
-| 5   | 1                   | 2            |
-| 7   | 2                   | 1            |
-| 11  | 2                   | 2            |
-| 1   | 3                   | 1            |
-| 12  | 3                   | 2            |
+| quantity_of_comments | num_of_users |
+|---------------------|--------------|
+| 1                   | 1            |
+| 1                   | 2            |
+| 2                   | 1            |
+| 2                   | 2            |
+| 3                   | 1            |
+| 3                   | 2            |
 
 
 
