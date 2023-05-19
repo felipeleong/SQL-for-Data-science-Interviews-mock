@@ -8,7 +8,8 @@ This table does not exsits*/
 SELECT
 	request_date,
 	ROUND(ABS(distance_to_travel / monetary_cost-
-	AVG(distance_to_travel/monetary_cost) OVER(PARTITION BY DATE_TRUNC('MONTH',request_date)ORDER BY DATE_TRUNC('MONTH',request_date)))::NUMERIC,2) 
+	AVG(distance_to_travel/monetary_cost) 
+	OVER(PARTITION BY DATE_TRUNC('MONTH',request_date)ORDER BY DATE_TRUNC('MONTH',request_date)))::NUMERIC,2) 
 		AS difference
 FROM interviews.request_logs;
 ````
