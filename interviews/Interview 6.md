@@ -9,27 +9,27 @@ use this tables: users and comments*/
 ````SQL
 WITH BASE AS (
 	SELECT 
-		ID, COUNT(*) AS QUANTITY_OF_COMMENTS
-	FROM interviews.users AS U 
-	INNER JOIN interviews.comments AS C ON U.ID = C.USER_ID
-	WHERE EXTRACT(MONTH FROM C.CREATED_AT) = 01 
-	AND EXTRACT(YEAR FROM U.JOINED_AT) >= 2018
+		u.id AS userID ,COUNT(*) AS QUANTITY_OF_COMMENTS
+	FROM interviews.users u
+	JOIN interviews.comments c ON U.id = c.user_id
+	WHERE EXTRACT(MONTH FROM C.CREATED_AT) = 01 AND EXTRACT(YEAR FROM U.JOINED_AT) >= 2018
 	GROUP BY 1
+), 
+CONSOLIDATION AS (
+	SELECT 
+		QUANTITY_OF_COMMENTS,
+		ROW_NUMBER() OVER(PARTITION BY QUANTITY_OF_COMMENTS ORDER BY QUANTITY_OF_COMMENTS) AS TOTAL
+	FROM BASE
 )
-SELECT
-	 QUANTITY_OF_COMMENTS,
-	ROW_NUMBER() OVER(PARTITION BY QUANTITY_OF_COMMENTS ORDER BY QUANTITY_OF_COMMENTS) AS NUM_OF_USERS
-FROM BASE;
+SELECT * FROM CONSOLIDATION
+WHERE TOTAL >1;
 ````
 Answer: 
-| quantity_of_comments | num_of_users |
-|---------------------|--------------|
-| 1                   | 1            |
-| 1                   | 2            |
-| 2                   | 1            |
-| 2                   | 2            |
-| 3                   | 1            |
-| 3                   | 2            |
+| quantity_of_comments | total |
+|---------------------|-------|
+| 1                   | 2     |
+| 2                   | 2     |
+| 3                   | 2     |
 
 
 
