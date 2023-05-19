@@ -12,24 +12,23 @@ WITH BASE AS (
 		u.id AS userID ,COUNT(*) AS QUANTITY_OF_COMMENTS
 	FROM interviews.users u
 	JOIN interviews.comments c ON U.id = c.user_id
-	WHERE EXTRACT(MONTH FROM C.CREATED_AT) = 01 AND EXTRACT(YEAR FROM U.JOINED_AT) >= 2018
+	WHERE created_at BETWEEN '2020-01-01' AND '2020-01-31' 
+	AND  created_at > joined_at 
 	GROUP BY 1
-), 
-CONSOLIDATION AS (
-	SELECT 
-		QUANTITY_OF_COMMENTS,
-		ROW_NUMBER() OVER(PARTITION BY QUANTITY_OF_COMMENTS ORDER BY QUANTITY_OF_COMMENTS) AS TOTAL
-	FROM BASE
 )
-SELECT * FROM CONSOLIDATION
-WHERE TOTAL >1;
+SELECT 
+	COUNT(userID),QUANTITY_OF_COMMENTS
+FROM BASE
+GROUP BY 2
+ORDER BY 2 
 ````
 Answer: 
-| quantity_of_comments | total |
-|---------------------|-------|
-| 1                   | 2     |
-| 2                   | 2     |
-| 3                   | 2     |
+| count | quantity_of_comments |
+|-------|---------------------|
+| 2     | 1                   |
+| 1     | 2                   |
+| 2     | 3                   |
+
 
 
 
